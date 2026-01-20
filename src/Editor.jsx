@@ -2,25 +2,30 @@ import EditorSection from './EditorSection.jsx'
 import EditorBlock from './EditorBlock.jsx'
 import TextInput from './inputs/TextInput.jsx'
 
-function Editor({ generalInfo, setGeneralInfo }) {
+function Editor({ cvData, setCvData }) {
   return (
     <div className="editor">
       <h2>Editor</h2>
-
       <EditorSection title="General Information">
         <EditorBlock>
           <TextInput
             label="Name"
-            value={generalInfo.name}
+            value={cvData.general.name}
             onChange={(v) =>
-              setGeneralInfo({ ...generalInfo, name: v })
+              setCvData(prev => ({
+                ...prev,
+                general: { ...prev.general, name: v }
+              }))
             }
           />
           <TextInput
             label="City"
-            value={generalInfo.city}
+            value={cvData.general.city}
             onChange={(v) =>
-              setGeneralInfo({ ...generalInfo, city: v })
+              setCvData(prev => ({
+                ...prev,
+                general: { ...prev.general, city: v }
+              }))
             }
           />
         </EditorBlock>
@@ -28,18 +33,38 @@ function Editor({ generalInfo, setGeneralInfo }) {
         <EditorBlock>
           <TextInput
             label="Phone"
-            value={generalInfo.phone}
+            value={cvData.general.phone}
             onChange={(v) =>
-              setGeneralInfo({ ...generalInfo, phone: v })
+              setCvData(prev => ({
+                ...prev,
+                general: { ...prev.general, phone: v }
+              }))
             }
           />
           <TextInput
             label="Website"
-            value={generalInfo.website}
+            value={cvData.general.website}
             onChange={(v) =>
-              setGeneralInfo({ ...generalInfo, website: v })
+              setCvData(prev => ({
+                ...prev,
+                general: { ...prev.general, website: v }
+              }))
             }
           />
+        </EditorBlock>
+      </EditorSection>
+      <EditorSection title="Profile">
+        <EditorBlock>
+          <textarea 
+            className="profile-text"
+            onChange={(e) =>
+              setCvData(prev => ({
+                ...prev,
+                profile: e.target.value
+              }))
+            }
+          >
+          </textarea>
         </EditorBlock>
       </EditorSection>
     </div>

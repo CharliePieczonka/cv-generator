@@ -3,11 +3,9 @@ import Editor from './Editor.jsx'
 import Preview from './Preview.jsx'
 
 function CvGenerator() {
-  const [generalInfo, setGeneralInfo] = useState({
-    name: "",
-    city: "",
-    phone: "",
-    website: "",
+  const [cvData, setCvData] = useState({
+    general: { name: "", city: "", phone: "", website: "" },
+    profile: ""
   });
 
   return (
@@ -17,10 +15,10 @@ function CvGenerator() {
       </div>
       <div className="main">
         <Editor
-          generalInfo={generalInfo}
-          setGeneralInfo={setGeneralInfo}
+          cvData={cvData}
+          setCvData={setCvData}
         />
-        <Preview generalInfo={generalInfo} />
+        <Preview cvData={cvData} />
       </div>
     </>
   )

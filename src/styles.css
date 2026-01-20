@@ -35,6 +35,7 @@
   border-right: 1px solid black;
   box-shadow: 1px 2px 5px black;
   z-index: 2;
+  overflow-y: scroll;
 }
 
 .section-container {
@@ -44,6 +45,8 @@
   border: 3px solid grey;
   border-radius: 1em;
   padding: 1em;
+
+  margin-bottom: 2em;
 }
 
 .block-container {
@@ -85,11 +88,40 @@ input[type="text"] {
   background-color: white;
   border: 1px solid grey;
   width: 794px;
-  height: 1123px;
+  min-height: 1123px;
 }
 
 .document-body {
   padding: 5em;
+}
+
+.document-general {
+  margin-bottom: 1em;
+}
+
+.general-name {
+  font-size: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.general-sub {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile-text {
+  height: 150px;
+  width: 100%;
+  resize: none;
+  padding: 0.5em;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid black;
 }
 
 @media (min-width: 1400px) {
