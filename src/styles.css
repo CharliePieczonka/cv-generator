@@ -95,10 +95,6 @@ input[type="text"] {
   padding: 5em;
 }
 
-.document-general {
-  margin-bottom: 1em;
-}
-
 .general-name {
   font-size: 32px;
   text-align: center;
@@ -117,11 +113,54 @@ input[type="text"] {
   padding: 0.5em;
 }
 
+.document-section {
+    margin-bottom: 1em;
+}
+
 .section-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 500;
   margin-bottom: 0.5em;
   border-bottom: 1px solid black;
+}
+
+.education-item {
+  border: 1px solid grey;
+  border-radius: 1em;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.education-delete-container {
+  display: flex;
+  justify-content: end;
+  position:relative;
+  margin-bottom: 1em;
+}
+
+.education-delete-btn {
+  position: absolute;
+  padding: 0;
+  border: none;
+  padding-right: 0.5em;
+}
+
+.education-delete-btn:focus {
+  outline: none;
+}
+
+.education-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-degree {
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.education-dates {
+  display: inline-block;
 }
 
 @media (min-width: 1400px) {
