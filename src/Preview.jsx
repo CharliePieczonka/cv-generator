@@ -25,9 +25,9 @@ export default function Preview({ cvData }) {
               {cvData.education[0].degree && <p className="section-title">EDUCATION</p>}
               {cvData.education.map((edu) => (
                 <div key={edu.id} className="education-entry">
-                  <div className="education-top">
-                    <div className="education-degree">{edu.degree}</div>
-                    <div className="education-dates">
+                  <div className="education-top entry-top">
+                    <div className="education-degree entry-title">{edu.degree}</div>
+                    <div className="education-dates entry-dates">
                       <span>{edu.dateFrom}</span>
                       {edu.dateFrom && edu.dateTo && <span> - </span>}
                       <span>{edu.dateTo}</span>
@@ -41,19 +41,44 @@ export default function Preview({ cvData }) {
               {cvData.experience[0].title && <p className="section-title">EXPERIENCE</p>}
               {cvData.experience.map((exp) => (
                 <div key={exp.id} className="experience-entry">
-                  <div className="experience-top">
-                    <div className="experience-title">{exp.title}</div>
-                    <div className="experience-dates">
+                  <div className="experience-top entry-top">
+                    <div className="experience-title entry-title">{exp.title}</div>
+                    <div className="experience-dates entry-dates">
                       <span>{exp.dateFrom}</span>
                       {exp.dateFrom && exp.dateTo && <span> - </span>}
                       <span>{exp.dateTo}</span>
                     </div>
                   </div>
                   <p className="experience-company"><em>{exp.company}</em></p>
-                  <ul className="experience-description-list">
+                  <ul className="description-list">
                     { 
                       exp.description.length > 0 &&
                       exp.description.split("\n").map((line) => (
+                        <li>{line}</li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="document-skills document-section">
+              {cvData.skills[0].title && <p className="section-title">SKILLS</p>}
+              {cvData.skills.map((skl) => (
+                <div key={skl.id} className="skill-entry">
+                  <div className="skill-title entry-title">{skl.title}</div>
+                  <p>{skl.description}</p>
+                </div>
+              ))}
+            </div>
+            <div className="document-projects document-section">
+              {cvData.projects[0].title && <p className="section-title">PROJECTS</p>}
+              {cvData.projects.map((prj) => (
+                <div key={prj.id} className="project-entry">
+                  <div className="project-title entry-title">{prj.title}</div>
+                  <ul className="description-list">
+                    { 
+                      prj.description.length > 0 &&
+                      prj.description.split("\n").map((line) => (
                         <li>{line}</li>
                       ))
                     }

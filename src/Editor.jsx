@@ -2,7 +2,7 @@ import EditorSection from './EditorSection.jsx'
 import EditorBlock from './EditorBlock.jsx'
 import TextInput from './inputs/TextInput.jsx'
 
-function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperience, deleteExperience }) {
+function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperience, deleteExperience, addSkill, deleteSkill, addProject, deleteProject }) {
   return (
     <div className="editor">
       <h2>Editor</h2>
@@ -55,7 +55,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
       <EditorSection title="Profile">
         <EditorBlock>
           <textarea 
-            className="profile-text"
+            className="editor-textarea"
             onChange={(e) =>
               setCvData(prev => ({
                 ...prev,
@@ -68,7 +68,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
       </EditorSection>
       <EditorSection title="Education">
         {cvData.education.map((edu) => (
-          <div key={edu.id} className="education-item">
+          <div key={edu.id} className="education-item repeatable-section-item">
             <div className="section-delete-container">
               <button 
                 type="button"
@@ -143,7 +143,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
       </EditorSection>
       <EditorSection title="Experience">
         {cvData.experience.map((exp) => (
-          <div key={exp.id} className="experience-item">
+          <div key={exp.id} className="experience-item repeatable-section-item">
             <div className="section-delete-container">
               <button 
                 type="button"
@@ -208,7 +208,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
             <div>
               <label className="text-label">Description:</label>
               <textarea 
-                className="experience-text"
+                className="editor-textarea"
                 onChange={(v) =>
                   setCvData(prev => ({
                     ...prev,
@@ -229,6 +229,110 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
           onClick={addExperience}
         >
           Add Experience
+        </button>
+      </EditorSection>
+      <EditorSection title="Skills">
+        {cvData.skills.map((skl) => (
+          <div key={skl.id} className="skill-item repeatable-section-item">
+            <div className="section-delete-container">
+              <button 
+                type="button"
+                className="btn section-delete-btn"
+                onClick={() => deleteSkill(skl.id)}
+              >
+                X
+              </button>
+            </div>
+            <EditorBlock>
+              <TextInput
+                label="Title"
+                value={skl.title}
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    skills: prev.skills.map(e =>
+                      e.id === skl.id ? { ...e, title: v } : e
+                    )
+                  }))
+                }
+              />
+            </EditorBlock>
+            <div>
+              <label className="text-label">Description:</label>
+              <textarea 
+                className="editor-textarea"
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    skills: prev.skills.map(e => 
+                      e.id === skl.id ? {...e, description: v.target.value } : e
+                    )
+                  }))
+                }
+              >
+              </textarea>
+            </div>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          className="btn btn-secondary w-50 align-self-center"
+          onClick={addSkill}
+        >
+          Add Skill
+        </button>
+      </EditorSection>
+      <EditorSection title="Projects">
+        {cvData.projects.map((prj) => (
+          <div key={prj.id} className="project-item repeatable-section-item">
+            <div className="section-delete-container">
+              <button 
+                type="button"
+                className="btn section-delete-btn"
+                onClick={() => deleteProject(prj.id)}
+              >
+                X
+              </button>
+            </div>
+            <EditorBlock>
+              <TextInput
+                label="Title"
+                value={prj.title}
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    projects: prev.projects.map(e =>
+                      e.id === prj.id ? { ...e, title: v } : e
+                    )
+                  }))
+                }
+              />
+            </EditorBlock>
+            <div>
+              <label className="text-label">Description:</label>
+              <textarea 
+                className="editor-textarea"
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    projects: prev.projects.map(e => 
+                      e.id === prj.id ? {...e, description: v.target.value } : e
+                    )
+                  }))
+                }
+              >
+              </textarea>
+            </div>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          className="btn btn-secondary w-50 align-self-center"
+          onClick={addProject}
+        >
+          Add Project
         </button>
       </EditorSection>
     </div>
