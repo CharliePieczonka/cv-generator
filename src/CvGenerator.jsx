@@ -10,11 +10,21 @@ const createEducation = () => ({
   dateTo: "",
 });
 
+const createExperience = () => ({
+  id: crypto.randomUUID(),
+  title: "",
+  company: "",
+  dateFrom: "",
+  dateTo: "",
+  description: "",
+});
+
 function CvGenerator() {
   const [cvData, setCvData] = useState({
-    general: { name: "", city: "", phone: "", website: "" },
+    general: { name: "", city: "", phone: "", email: "" },
     profile: "",
     education: [createEducation()],
+    experience: [createExperience()],
   });
 
   const addEducation = () => {
@@ -33,6 +43,22 @@ function CvGenerator() {
     } 
   };
 
+  const addExperience = () => {
+    setCvData(prev => ({
+      ...prev,
+      experience: [...prev.experience, createExperience()],
+    }));
+  };
+
+  const deleteExperience = (id) => {
+    if(cvData.experience.length > 1) {
+      setCvData(prev => ({
+        ...prev,
+        experience: prev.experience.filter(e => e.id !== id),
+      }));
+    } 
+  };
+
   return (
     <>
       <div className="header">
@@ -44,6 +70,8 @@ function CvGenerator() {
           setCvData={setCvData}
           addEducation={addEducation}
           deleteEducation={deleteEducation}
+          addExperience={addExperience}
+          deleteExperience={deleteExperience}
         />
         <Preview cvData={cvData} />
       </div>

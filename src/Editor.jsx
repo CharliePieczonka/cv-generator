@@ -2,7 +2,7 @@ import EditorSection from './EditorSection.jsx'
 import EditorBlock from './EditorBlock.jsx'
 import TextInput from './inputs/TextInput.jsx'
 
-function Editor({ cvData, addEducation, deleteEducation, setCvData }) {
+function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperience, deleteExperience }) {
   return (
     <div className="editor">
       <h2>Editor</h2>
@@ -19,19 +19,6 @@ function Editor({ cvData, addEducation, deleteEducation, setCvData }) {
             }
           />
           <TextInput
-            label="City"
-            value={cvData.general.city}
-            onChange={(v) =>
-              setCvData(prev => ({
-                ...prev,
-                general: { ...prev.general, city: v }
-              }))
-            }
-          />
-        </EditorBlock>
-
-        <EditorBlock>
-          <TextInput
             label="Phone"
             value={cvData.general.phone}
             onChange={(v) =>
@@ -41,13 +28,25 @@ function Editor({ cvData, addEducation, deleteEducation, setCvData }) {
               }))
             }
           />
+        </EditorBlock>
+        <EditorBlock>
           <TextInput
-            label="Website"
-            value={cvData.general.website}
+            label="Email"
+            value={cvData.general.email}
             onChange={(v) =>
               setCvData(prev => ({
                 ...prev,
-                general: { ...prev.general, website: v }
+                general: { ...prev.general, email: v }
+              }))
+            }
+          />
+          <TextInput
+            label="City"
+            value={cvData.general.city}
+            onChange={(v) =>
+              setCvData(prev => ({
+                ...prev,
+                general: { ...prev.general, city: v }
               }))
             }
           />
@@ -70,10 +69,10 @@ function Editor({ cvData, addEducation, deleteEducation, setCvData }) {
       <EditorSection title="Education">
         {cvData.education.map((edu) => (
           <div key={edu.id} className="education-item">
-            <div className="education-delete-container">
+            <div className="section-delete-container">
               <button 
                 type="button"
-                className="btn education-delete-btn"
+                className="btn section-delete-btn"
                 onClick={() => deleteEducation(edu.id)}
               >
                 X
@@ -140,6 +139,96 @@ function Editor({ cvData, addEducation, deleteEducation, setCvData }) {
           onClick={addEducation}
         >
           Add Education
+        </button>
+      </EditorSection>
+      <EditorSection title="Experience">
+        {cvData.experience.map((exp) => (
+          <div key={exp.id} className="experience-item">
+            <div className="section-delete-container">
+              <button 
+                type="button"
+                className="btn section-delete-btn"
+                onClick={() => deleteExperience(exp.id)}
+              >
+                X
+              </button>
+            </div>
+            <EditorBlock>
+              <TextInput
+                label="Job Title"
+                value={exp.title}
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    experience: prev.experience.map(e =>
+                      e.id === exp.id ? { ...e, title: v } : e
+                    )
+                  }))
+                }
+              />
+              <TextInput
+                label="Company"
+                value={exp.company}
+                onChange={(v) => {
+                  setCvData(prev => ({
+                    ...prev,
+                    experience: prev.experience.map(e =>
+                      e.id === exp.id ? { ...e, company: v } : e
+                    )
+                  }))
+                }}
+              />
+            </EditorBlock>
+            <EditorBlock>
+              <TextInput
+                label="Start Date"
+                value={exp.dateFrom}
+                onChange={(v) => {
+                  setCvData(prev => ({
+                    ...prev,
+                    experience: prev.experience.map(e =>
+                      e.id === exp.id ? { ...e, dateFrom: v } : e
+                    )
+                  }))
+                }}
+              />
+              <TextInput
+                label="End Date"
+                value={exp.dateTo}
+                onChange={(v) => {
+                  setCvData(prev => ({
+                    ...prev,
+                    experience: prev.experience.map(e =>
+                      e.id === exp.id ? { ...e, dateTo: v } : e
+                    )
+                  }))
+                }}
+              />
+            </EditorBlock>
+            <div>
+              <label className="text-label">Description:</label>
+              <textarea 
+                className="experience-text"
+                onChange={(v) =>
+                  setCvData(prev => ({
+                    ...prev,
+                    experience: prev.experience.map(e => 
+                      e.id === exp.id ? {...e, description: v.target.value } : e
+                    )
+                  }))
+                }
+              >
+              </textarea>
+            </div>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          className="btn btn-secondary w-50 align-self-center"
+          onClick={addExperience}
+        >
+          Add Experience
         </button>
       </EditorSection>
     </div>

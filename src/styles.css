@@ -106,7 +106,7 @@ input[type="text"] {
   justify-content: space-evenly;
 }
 
-.profile-text {
+.profile-text, .experience-text {
   height: 150px;
   width: 100%;
   resize: none;
@@ -124,43 +124,51 @@ input[type="text"] {
   border-bottom: 1px solid black;
 }
 
-.education-item {
+.education-item, .experience-item {
   border: 1px solid grey;
   border-radius: 1em;
   padding: 1em;
   margin-bottom: 1em;
 }
 
-.education-delete-container {
+.section-delete-container {
   display: flex;
   justify-content: end;
   position:relative;
   margin-bottom: 1em;
 }
 
-.education-delete-btn {
+.section-delete-btn {
   position: absolute;
   padding: 0;
   border: none;
   padding-right: 0.5em;
 }
 
-.education-delete-btn:focus {
+.section-delete-btn:focus {
   outline: none;
 }
 
-.education-top {
+.education-top, .experience-top {
   display: flex;
   justify-content: space-between;
 }
 
-.education-degree {
+.education-degree, .experience-title {
   font-weight: 500;
   margin-bottom: 0;
 }
 
-.education-dates {
+.education-dates, .experience-dates {
   display: inline-block;
+}
+
+.experience-company {
+  margin-bottom: 0;
+}
+
+.experience-description-list {
+  margin-top: 0.5em;
 }
 
 @media (min-width: 1400px) {
