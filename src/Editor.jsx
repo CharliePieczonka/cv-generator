@@ -2,7 +2,7 @@ import EditorSection from './EditorSection.jsx'
 import EditorBlock from './EditorBlock.jsx'
 import TextInput from './inputs/TextInput.jsx'
 
-function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperience, deleteExperience, addSkill, deleteSkill, addProject, deleteProject }) {
+function Editor({ cvData, setCvData, addItem, deleteItem }) {
   return (
     <div className="editor">
       <h2>Editor</h2>
@@ -73,7 +73,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
               <button 
                 type="button"
                 className="btn section-delete-btn"
-                onClick={() => deleteEducation(edu.id)}
+                onClick={() => deleteItem('education', edu.id)}
               >
                 X
               </button>
@@ -136,7 +136,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
         <button
           type="button"
           className="btn btn-secondary w-50 align-self-center"
-          onClick={addEducation}
+          onClick={() => addItem('education')}
         >
           Add Education
         </button>
@@ -148,7 +148,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
               <button 
                 type="button"
                 className="btn section-delete-btn"
-                onClick={() => deleteExperience(exp.id)}
+                onClick={() => deleteItem('experience', exp.id)}
               >
                 X
               </button>
@@ -226,7 +226,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
         <button
           type="button"
           className="btn btn-secondary w-50 align-self-center"
-          onClick={addExperience}
+          onClick={() => addItem('experience')}
         >
           Add Experience
         </button>
@@ -238,7 +238,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
               <button 
                 type="button"
                 className="btn section-delete-btn"
-                onClick={() => deleteSkill(skl.id)}
+                onClick={() => deleteItem('skills', skl.id)}
               >
                 X
               </button>
@@ -278,7 +278,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
         <button
           type="button"
           className="btn btn-secondary w-50 align-self-center"
-          onClick={addSkill}
+          onClick={() => addItem('skills')}
         >
           Add Skill
         </button>
@@ -290,7 +290,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
               <button 
                 type="button"
                 className="btn section-delete-btn"
-                onClick={() => deleteProject(prj.id)}
+                onClick={() => deleteItem('projects', prj.id)}
               >
                 X
               </button>
@@ -330,7 +330,7 @@ function Editor({ cvData, setCvData, addEducation, deleteEducation, addExperienc
         <button
           type="button"
           className="btn btn-secondary w-50 align-self-center"
-          onClick={addProject}
+          onClick={() => addItem('projects')}
         >
           Add Project
         </button>

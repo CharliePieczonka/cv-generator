@@ -47,8 +47,8 @@ a { color: inherit; }
 
 .editor {
   padding: 1em 3em;
-  background-color: #EEF2EE;
-  border-right: 1px solid #A8C0A8;
+  background-color: #EEEFF2;
+  border-right: 1px solid #A8B2BC;
   box-shadow: 2px 0px 8px rgba(45, 55, 72, 0.15);
   z-index: 2;
   overflow-y: scroll;
@@ -63,8 +63,8 @@ a { color: inherit; }
   display: flex;
   flex-direction: column;
 
-  background-color: #F5F8F5;
-  border: 2px solid #B8CDB8;
+  background-color: #F5F6F9;
+  border: 2px solid #B8C0C8;
   border-radius: 1em;
   padding: 1em;
 
@@ -90,19 +90,19 @@ a { color: inherit; }
 input[type="text"] {
   padding: 5px;
   background-color: #FFFFFF;
-  border: 1px solid #A8C0A8;
+  border: 1px solid #A8B2BC;
   color: #2D3748;
 }
 
 input[type="text"]:focus {
   outline: none;
-  border-color: #4A7C59;
-  box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.2);
+  border-color: #4A6C7C;
+  box-shadow: 0 0 0 2px rgba(74, 108, 124, 0.2);
 }
 
 .preview {
   padding: 1em 0;
-  background-color: #E2EAE2;
+  background-color: #E3E6EC;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -148,14 +148,14 @@ input[type="text"]:focus {
   resize: none;
   padding: 0.5em;
   background-color: #FFFFFF;
-  border: 1px solid #A8C0A8;
+  border: 1px solid #A8B2BC;
   color: #2D3748;
 }
 
 .editor-textarea:focus {
   outline: none;
-  border-color: #4A7C59;
-  box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.2);
+  border-color: #4A6C7C;
+  box-shadow: 0 0 0 2px rgba(74, 108, 124, 0.2);
 }
 
 .document-section {
@@ -170,8 +170,8 @@ input[type="text"]:focus {
 }
 
 .repeatable-section-item {
-  background-color: #EEF2EE;
-  border: 1px solid #B8CDB8;
+  background-color: #EEEFF2;
+  border: 1px solid #B8C0C8;
   border-radius: 1em;
   padding: 1em;
   margin-bottom: 1em;
@@ -220,5 +220,23 @@ input[type="text"]:focus {
 @media (min-width: 1400px) {
   .preview {
     align-items: center;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area, #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 1em;
   }
 }

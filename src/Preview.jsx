@@ -9,7 +9,7 @@ export default function Preview({ cvData }) {
       <div className="document-wrapper">
         <h2>Preview</h2>
         <div className="document">
-          <div className="document-body">
+          <div className="document-body" id="print-area">
             <div className="document-general document-section">
               <p className="general-name">{cvData.general.name}</p>
               <div className="general-sub">

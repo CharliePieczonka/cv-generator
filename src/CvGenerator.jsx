@@ -43,69 +43,20 @@ function CvGenerator() {
     projects: [createProject()],
   });
 
-  const addEducation = () => {
-    setCvData(prev => ({
-      ...prev,
-      education: [...prev.education, createEducation()],
-    }));
+  const creators = {
+    education: createEducation,
+    experience: createExperience,
+    skills: createSkill,
+    projects: createProject,
   };
 
-  const deleteEducation = (id) => {
-    if(cvData.education.length > 1) {
-      setCvData(prev => ({
-        ...prev,
-        education: prev.education.filter(e => e.id !== id),
-      }));
-    } 
-  };
+  const addItem = (section) => setCvData(prev => ({
+    ...prev, [section]: [...prev[section], creators[section]()]
+  }));
 
-  const addExperience = () => {
-    setCvData(prev => ({
-      ...prev,
-      experience: [...prev.experience, createExperience()],
-    }));
-  };
-
-  const deleteExperience = (id) => {
-    if(cvData.experience.length > 1) {
-      setCvData(prev => ({
-        ...prev,
-        experience: prev.experience.filter(e => e.id !== id),
-      }));
-    } 
-  };
-
-  const addSkill = () => {
-    setCvData(prev => ({
-      ...prev,
-      skills: [...prev.skills, createSkill()],
-    }));
-  };
-
-  const deleteSkill = (id) => {
-    if(cvData.experience.length > 1) {
-      setCvData(prev => ({
-        ...prev,
-        skills: prev.skills.filter(e => e.id !== id),
-      }));
-    } 
-  };
-
-  const addProject = () => {
-    setCvData(prev => ({
-      ...prev,
-      projects: [...prev.projects, createProject()],
-    }));
-  };
-
-  const deleteProject = (id) => {
-    if(cvData.projects.length > 1) {
-      setCvData(prev => ({
-        ...prev,
-        projects: prev.projects.filter(e => e.id !== id),
-      }));
-    } 
-  };
+  const deleteItem = (section, id) => setCvData(prev => ({
+    ...prev, [section]: prev[section].filter(e => e.id !== id)
+  }));
 
   return (
     <>
@@ -120,14 +71,8 @@ function CvGenerator() {
         <Editor
           cvData={cvData}
           setCvData={setCvData}
-          addEducation={addEducation}
-          deleteEducation={deleteEducation}
-          addExperience={addExperience}
-          deleteExperience={deleteExperience}
-          addSkill={addSkill}
-          deleteSkill={deleteSkill}
-          addProject={addProject}
-          deleteProject={deleteProject}
+          addItem={addItem}
+          deleteItem={deleteItem}
         />
         <Preview cvData={cvData} />
       </div>
